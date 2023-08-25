@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "167132280668",
+    "project_id": "appreact-5409a",
+    "storage_bucket": "appreact-5409a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167132280668:android:00d9520c179670e58a3399",
+        "android_client_info": {
+          "package_name": "com.appreact"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167132280668-0rknauieid0p8ms3psimuu5ununhklfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDfKb_ayBJT3HH8N6ldezzIyQSs0w3Ykc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167132280668-0rknauieid0p8ms3psimuu5ununhklfr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
