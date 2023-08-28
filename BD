@@ -1,0 +1,45 @@
+    Users Table:
+        user_id (Primary Key)
+        username
+        email
+        deleted
+
+    Pubs Table:
+        pub_id (Primary Key)
+        pub_name
+        location
+        deleted
+
+    Discounts Table:
+        discount_id (Primary Key)
+        pub_id (Foreign Key referencing the Pubs table)
+        discount_amount
+        start_date
+        end_date
+        deleted
+
+    Achievements Table:
+        achievement_id (Primary Key)
+        achievement_name
+        description
+        discount_id (Foreign Key referencing the Discounts table)
+        deleted
+
+    Friends Table:
+        friendship_id (Primary Key)
+        user_id (Foreign Key referencing the Users table)
+        friend_id (Foreign Key referencing the Users table)
+        deleted
+
+    User_Discounts Table:
+        user_discount_id (Primary Key)
+        user_id (Foreign Key referencing the Users table)
+        discount_id (Foreign Key referencing the Discounts table)
+        active
+        used
+
+    User_Achievements Table:
+        user_achievement_id (Primary Key)
+        user_id (Foreign Key referencing the Users table)
+        achievement_id (Foreign Key referencing the Achievements table)
+        achievement_completion_date
