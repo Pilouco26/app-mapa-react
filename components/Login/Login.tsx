@@ -74,11 +74,12 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Inicía Sessió</Text>
       <Image source={require('../../pictures/logo3.png')} style={styles.logo} />
       <TextInput
         value={email}
         style={styles.input}
-        placeholder="Email"
+        placeholder="Mail"
         placeholderTextColor="#000"
         autoCapitalize="none"
         onChangeText={text => setEmail(text)}
@@ -87,7 +88,7 @@ const Login = () => {
         secureTextEntry={true}
         value={password}
         style={styles.input}
-        placeholder="Password"
+        placeholder="Contrasenya"
         placeholderTextColor="#000"
         autoCapitalize="none"
         onChangeText={text => setPassword(text)}
@@ -97,13 +98,13 @@ const Login = () => {
       ) : (
         <>
           <TouchableOpacity style={styles.mainButton} onPress={() => signIn()}>
-            <Text>Login</Text>
+            <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
 
           {/* Conditionally render the "Sign Up" button */}
           {!keyboardVisible && (
             <TouchableOpacity style={styles.button} onPress={() => signUp()}>
-              <Text>Sign Up</Text>
+              <Text style={styles.buttonText}>Crear Compte</Text>
             </TouchableOpacity>
           )}
         </>
@@ -117,8 +118,6 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'white', // Set the background color to white
   },
   text: {
@@ -133,15 +132,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 10,
+    alignSelf: 'center',
   },
   mainButton: {
     width: '75%',
     height: 50,
-    backgroundColor: '#7FFFD4',
+    backgroundColor: '#228B22',
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
+    alignSelf: 'center',
   },
   button: {
     width: 100, // Adjust the width as needed
@@ -156,10 +157,21 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white', // Text color for the buttons
+    fontWeight: 'bold',
   },
   logo: {
     width: 300,
     height: 300,
     marginBottom: 5, // Optional, add spacing below the logo if needed
+    alignSelf: 'center',
+  },
+  title: {
+    fontSize: 36,
+    marginTop: 20,
+    alignSelf: 'center',
+    marginBottom: 10,
+    fontFamily: 'Cochin',
+    fontWeight: 'bold',
+    color: '#000000',
   },
 });
