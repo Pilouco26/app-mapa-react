@@ -2,14 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import Login from './appReact/components/Login/Login';
-import Footer from './appReact/components/Footer/Footer';
-import Header from './appReact/components/Header/Header';
+import Login from './components/Login/Login';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 import { User, onAuthStateChanged } from 'firebase/auth';
-import { FIREBASE_AUTH } from './appReact/config/Firebase';
-import Map from './appReact/screens/main/Map/Map';
-import Friends from './appReact/screens/main/Friends/Friends';
-import Discounts from './appReact/screens/main/Discounts/Discounts';
+import { FIREBASE_AUTH } from './config/Firebase';
+import Map from './screens/main/Map/Map';
+import Friends from './screens/main/Friends/Friends';
+import Discounts from './screens/main/Discounts/Discounts';
 
 const Stack = createNativeStackNavigator();
 
