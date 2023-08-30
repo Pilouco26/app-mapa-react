@@ -1,26 +1,49 @@
 // App.js
-import React, { useEffect, useState } from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import { User, onAuthStateChanged } from 'firebase/auth';
-import { FIREBASE_AUTH } from './config/Firebase';
+import {User, onAuthStateChanged} from 'firebase/auth';
+import {FIREBASE_AUTH} from './config/Firebase';
 import Map from './screens/main/Map/Map';
 import Friends from './screens/main/Friends/Friends';
 import Discounts from './screens/main/Discounts/Discounts';
+import SignUp from './components/Login/SignUp';
 
 const Stack = createNativeStackNavigator();
 
 function InsideLayout() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="footer" component={Footer} options={{ headerShown: false }} />
-      <Stack.Screen name="Header" component={Header} />
       <Stack.Screen name="Map" component={Map} />
+      <Stack.Screen
+        name="Footer"
+        component={Footer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name="Header" component={Header} />
       <Stack.Screen name="Friends" component={Friends} />
       <Stack.Screen name="Discounts" component={Discounts} />
+      <Stack.Screen name="SignUp" component={SignUp} />
+    </Stack.Navigator>
+  );
+}
+
+function Authentication() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="LogIn"
+        component={Login}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 }
@@ -29,7 +52,7 @@ function App() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+    onAuthStateChanged(FIREBASE_AUTH, user => {
       console.log('user', user);
       setUser(user);
     });
@@ -37,18 +60,18 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={user ? "Home" : "Login"}>
+      <Stack.Navigator initialRouteName={user ? 'Home' : 'Login'}>
         {user ? (
           <Stack.Screen
             name="Home"
             component={InsideLayout}
-            options={{ headerShown: false }}
+            options={{headerShown: false}}
           />
         ) : (
           <Stack.Screen
             name="Login"
-            component={Login}
-            options={{ headerShown: false }}
+            component={Authentication}
+            options={{headerShown: false}}
           />
         )}
       </Stack.Navigator>
