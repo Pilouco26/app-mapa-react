@@ -1,0 +1,26 @@
+buildscript {
+    ext {
+        buildToolsVersion = "33.0.0"
+        minSdkVersion = 21
+        compileSdkVersion = 33
+        targetSdkVersion = 33
+        RNMapboxMapsImpl = "mapbox"
+        ndkVersion = "23.1.7779620"
+    }
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            credentials {
+                // Use the secret token you stored in gradle.properties as the password
+                username = "mapbox"
+                password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
+            }
+        }
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:7.0.0") // Update the Gradle version
+        classpath("com.facebook.react:react-native-gradle-plugin:7.0.0") // Update the React Native Gradle Plugin version
+    }
+}
