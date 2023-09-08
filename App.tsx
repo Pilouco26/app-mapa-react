@@ -15,11 +15,11 @@ import Profile from './screens/secondary/Profile/Profile';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import Options from './components/Login/Options';
 import Mapbox from '@rnmapbox/maps';
-import { setAccessToken } from '@rnmapbox/maps';
+import {setAccessToken} from '@rnmapbox/maps';
+import * as eva from '@eva-design/eva';
+import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
 
 const Stack = createNativeStackNavigator();
-
-
 
 function InsideLayout() {
   return (
@@ -65,23 +65,25 @@ function App() {
   }, []);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName={user ? 'Home' : 'Login'}>
-        {user ? (
-          <Stack.Screen
-            name="Home"
-            component={InsideLayout}
-            options={{headerShown: false}}
-          />
-        ) : (
-          <Stack.Screen
-            name="Login"
-            component={Authentication}
-            options={{headerShown: false}}
-          />
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName={user ? 'Home' : 'Login'}>
+          {user ? (
+            <Stack.Screen
+              name="Home"
+              component={InsideLayout}
+              options={{headerShown: false}}
+            />
+          ) : (
+            <Stack.Screen
+              name="Login"
+              component={Authentication}
+              options={{headerShown: false}}
+            />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ApplicationProvider>
   );
 }
 

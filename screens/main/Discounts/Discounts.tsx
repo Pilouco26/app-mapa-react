@@ -1,12 +1,25 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-
-const Discounts = () => {
-  return (
-    <View>
-      <Text>Discounts</Text>
-    </View>
-  )
+import {View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+import {DiscountsList} from './DiscountsList';
+import Footer from '../../../components/Footer/Footer';
+import {NavigationProp} from '@react-navigation/native';
+interface RouterProps {
+  navigation: NavigationProp<any, any>;
 }
 
-export default Discounts
+const Discounts = ({navigation}: RouterProps) => {
+  return (
+    <View style={styles.container}>
+      <DiscountsList ></DiscountsList>
+      <Footer navigation={navigation}></Footer>
+    </View>
+  );
+};
+
+export default Discounts;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

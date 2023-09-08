@@ -14,8 +14,8 @@ import { user } from '../../main/Map/Map';
 
 
 const auth = () => {
-    console.log(FIREBASE_AUTH.currentUser?.email);
-  console.log(user.username);
+    console.log("mail a auth", FIREBASE_AUTH.currentUser?.email);
+
 };
 
 export const Profile = () => {

@@ -26,7 +26,6 @@ const Map = ({navigation}: RouterProps) => {
   }, []);
   return (
     <View style={styles.container}>
-      <Mapbox.MapView style={styles.map} />
       <Footer navigation={navigation} />
     </View>
   );
