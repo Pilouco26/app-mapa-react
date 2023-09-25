@@ -12,14 +12,15 @@ import Friends from './screens/main/Friends/Friends';
 import Discounts from './screens/main/Discounts/Discounts';
 import SignUp from './components/Login/SignUp';
 import Profile from './screens/secondary/Profile/Profile';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import Options from './components/Login/Options';
-import Mapbox from '@rnmapbox/maps';
-import {setAccessToken} from '@rnmapbox/maps';
 import * as eva from '@eva-design/eva';
 import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
+import QrCode from './screens/main/Discounts/QrCode';
+import Scanner from './screens/main/Discounts/Scanner';
+import { Camera } from 'react-native-vision-camera';
+import { PermissionsAndroid } from 'react-native';
 
 const Stack = createNativeStackNavigator();
+
 
 function InsideLayout() {
   return (
@@ -34,6 +35,8 @@ function InsideLayout() {
       <Stack.Screen name="Friends" component={Friends} />
       <Stack.Screen name="Discounts" component={Discounts} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="QrCode" component={QrCode} />
+      <Stack.Screen name="Scanner" component={Scanner} />
     </Stack.Navigator>
   );
 }
@@ -56,6 +59,7 @@ function Authentication() {
 }
 
 function App() {
+
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {

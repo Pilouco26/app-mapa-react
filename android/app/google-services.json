@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "649007846141",
+    "project_id": "mapboxapp-54f17",
+    "storage_bucket": "mapboxapp-54f17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649007846141:android:fdfd900936f4e9dc83a494",
+        "android_client_info": {
+          "package_name": "com.MapBoxApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649007846141-s7q0heles8n0p6gjfn46v7gbnc1noe68.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.MapBoxApp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "649007846141-chs7g4jboq2ka8p06qc0eb69uh9ukbhn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBosiKtcsoNAyxPjSdUjpqM8JJKx9_BJYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649007846141-chs7g4jboq2ka8p06qc0eb69uh9ukbhn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

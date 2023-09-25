@@ -22,5 +22,6 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:7.0.0") // Update the Gradle version
         classpath("com.facebook.react:react-native-gradle-plugin:7.0.0") // Update the React Native Gradle Plugin version
+        classpath 'com.google.gms:google-services:4.3.15'
     }
 }

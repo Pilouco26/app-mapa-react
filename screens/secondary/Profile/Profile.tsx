@@ -10,21 +10,12 @@ import {
 import React, {useEffect, useState} from 'react';
 import {FIREBASE_AUTH, FIREBASE_DB} from '../../../config/Firebase';
 import {getNameByEmail} from '../../../database/Usuaris/Usuaris';
-import { user } from '../../main/Map/Map';
-
-
-const auth = () => {
-    console.log("mail a auth", FIREBASE_AUTH.currentUser?.email);
-
-};
+import {user} from '../../main/Map/Map';
 
 export const Profile = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <TouchableOpacity onPress={auth}>
-          <Text>auth</Text>
-        </TouchableOpacity>
         <View style={{alignSelf: 'center'}}>
           <View style={styles.profileImage}>
             <Image

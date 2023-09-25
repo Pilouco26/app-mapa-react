@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, PermissionsAndroid, Button} from 'react-native';
 import React, {useEffect} from 'react';
 import {NavigationProp} from '@react-navigation/native'; // Import the NavigationContainer
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -18,30 +18,51 @@ export const user = {
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
+const requestCameraPermission = async () => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      {
+        title: 'Cool Photo App Camera Permission',
+        message:
+          'Cool Photo App needs access to your camera ' +
+          'so you can take awesome pictures.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('You can use the camera');
+    } else {
+      console.log('Camera permission denied');
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+};
 
 const Map = ({navigation}: RouterProps) => {
   useEffect(() => {
-    console.log('Map');
     if (user.username === 'NOT_LOADED') fetchData();
   }, []);
   return (
     <View style={styles.container}>
       <Footer navigation={navigation} />
+      <Button title="request permissions" onPress={requestCameraPermission} />
     </View>
   );
 };
 
 async function fetchData() {
-  console.log('Fetching data');
   user.username = await getName();
-  console.log(user.username);
+
   user.number = await getId();
 }
 
 async function getName() {
   try {
     const email = FIREBASE_AUTH.currentUser?.email;
-    console.log('email', email);
     if (email) {
       const name = await getNameByEmail(email);
       return name;
@@ -55,7 +76,6 @@ async function getName() {
 async function getId() {
   try {
     const email = FIREBASE_AUTH.currentUser?.email;
-    console.log('email', email);
     if (email) {
       const id = await getIdByEmail(email);
       return id;
