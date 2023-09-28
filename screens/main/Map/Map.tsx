@@ -20,6 +20,17 @@ interface RouterProps {
 }
 const requestCameraPermission = async () => {
   try {
+
+    const vibrateGranted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+      {
+        title: 'App Vibration Permission',
+        message: 'App needs access to vibrate for certain features.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.CAMERA,
       {
@@ -32,8 +43,17 @@ const requestCameraPermission = async () => {
         buttonPositive: 'OK',
       },
     );
+
+
+
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
       console.log('You can use the camera');
+    } else {
+      console.log('Camera permission denied');
+    }
+    
+    if (vibrateGranted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('You can use the vibration');
     } else {
       console.log('Camera permission denied');
     }

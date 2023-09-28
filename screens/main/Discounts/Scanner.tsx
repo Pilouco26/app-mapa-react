@@ -1,24 +1,30 @@
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Linking, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {BarCodeReadEvent, RNCamera} from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
-const Scanner = () => {
-  // Define a function to handle the data read from the QR code
-  const onSuccess = (e: any) => {
-    Linking.openURL(e.data).catch(err =>
-      console.error('An error occured', err),
-    );
-    console.log(onSuccess)
+// Define an interface to describe the structure of the event object
+interface RouterProps {
+  navigation: NavigationProp<any, any>;
+}
+
+const Scanner = ({navigation}: RouterProps) => {
+  const handleQRCodeRead = (event: any) => {
+    console.log('QR code data:', event.data);
+    console.log('Event type:', typeof event.data);
+
+    if (event.data) {
+      // If event.data is available, navigate back to "Discounts" component
+      navigation.navigate('Discounts');
+    }
   };
 
   return (
     <QRCodeScanner
-      onRead={onSuccess.bind(this)}
+      onRead={handleQRCodeRead}
       topContent={
         <Text style={styles.centerText}>
-           <Text style={styles.textBold}>Test scanner</Text>{' '}
-          
+          <Text style={styles.textBold}>Test scanner</Text>{' '}
         </Text>
       }
       bottomContent={
@@ -43,7 +49,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 21,
-    color: 'rgb(0,122,255)',
+    color: 'rgb(0, 122, 255)',
   },
   buttonTouchable: {
     padding: 16,
