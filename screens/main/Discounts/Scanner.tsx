@@ -1,29 +1,24 @@
-'use strict';
-
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-import { BarCodeReadEvent } from 'react-native-camera';
+import {Linking, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {BarCodeReadEvent, RNCamera} from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
-const Scanner: React.FC = () => {
+const Scanner = () => {
   // Define a function to handle the data read from the QR code
-  const handleQRCodeRead = (e: String) => {
-    // e.data contains the data read from the QR code
-    console.log('QR Code Data:',e);
-    // You can add your logic here to handle the QR code data
+  const onSuccess = (e: any) => {
+    Linking.openURL(e.data).catch(err =>
+      console.error('An error occured', err),
+    );
+    console.log(onSuccess)
   };
 
   return (
     <QRCodeScanner
-      onRead={handleQRCodeRead} // Pass the handleQRCodeRead function here
+      onRead={onSuccess.bind(this)}
       topContent={
         <Text style={styles.centerText}>
-          Scaneja el codi Qr del restaurant per obtenir els descomptes de{' '}
-          <Text style={styles.textBold}>pizzeria Alfredo</Text>.
+           <Text style={styles.textBold}>Test scanner</Text>{' '}
+          
         </Text>
       }
       bottomContent={
