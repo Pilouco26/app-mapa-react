@@ -1,7 +1,6 @@
-import {View, Text, StyleSheet, PermissionsAndroid, Button} from 'react-native';
+import {View, StyleSheet, PermissionsAndroid, Button} from 'react-native';
 import React, {useEffect} from 'react';
 import {NavigationProp} from '@react-navigation/native'; // Import the NavigationContainer
-import {SafeAreaView} from 'react-native-safe-area-context';
 import Footer from '../../../components/Footer/Footer';
 import {FIREBASE_AUTH} from '../../../config/Firebase';
 import {getIdByEmail, getNameByEmail} from '../../../database/Usuaris/Usuaris';
@@ -20,8 +19,7 @@ interface RouterProps {
 }
 const requestCameraPermission = async () => {
   try {
-
-    const vibrateGranted = await PermissionsAndroid.request(
+    await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
       {
         title: 'App Vibration Permission',
@@ -31,32 +29,15 @@ const requestCameraPermission = async () => {
         buttonPositive: 'OK',
       },
     );
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.CAMERA,
-      {
-        title: 'Cool Photo App Camera Permission',
-        message:
-          'Cool Photo App needs access to your camera ' +
-          'so you can take awesome pictures.',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      },
-    );
-
-
-
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      console.log('You can use the camera');
-    } else {
-      console.log('Camera permission denied');
-    }
-    
-    if (vibrateGranted === PermissionsAndroid.RESULTS.GRANTED) {
-      console.log('You can use the vibration');
-    } else {
-      console.log('Camera permission denied');
-    }
+    await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA, {
+      title: 'Cool Photo App Camera Permission',
+      message:
+        'Cool Photo App needs access to your camera ' +
+        'so you can take awesome pictures.',
+      buttonNeutral: 'Ask Me Later',
+      buttonNegative: 'Cancel',
+      buttonPositive: 'OK',
+    });
   } catch (err) {
     console.warn(err);
   }
@@ -64,7 +45,7 @@ const requestCameraPermission = async () => {
 
 const Map = ({navigation}: RouterProps) => {
   useEffect(() => {
-    if (user.username === 'NOT_LOADED') fetchData();
+    if (user.username === 'NOT_LOADED') {fetchData();}
   }, []);
   return (
     <View style={styles.container}>

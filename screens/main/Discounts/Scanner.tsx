@@ -1,20 +1,34 @@
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {NavigationProp} from '@react-navigation/native';
 import React from 'react';
-import {Linking, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import {getIdByEmail} from '../../../database/Usuaris/Usuaris';
+import {FIREBASE_AUTH} from '../../../config/Firebase';
+import {addDiscountUser} from '../../../database/UsuarisDescomptes/UsuarisDescomptes';
 
+async function getId() {
+  try {
+    const email = FIREBASE_AUTH.currentUser?.email;
+    if (email) {
+      const id = await getIdByEmail(email);
+      return id;
+    }
+    return '';
+  } catch (error) {
+    console.error('Error fetching name:', error);
+    return '';
+  }
+}
 // Define an interface to describe the structure of the event object
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
 
 const Scanner = ({navigation}: RouterProps) => {
-  const handleQRCodeRead = (event: any) => {
-    console.log('QR code data:', event.data);
-    console.log('Event type:', typeof event.data);
-
+  const handleQRCodeRead = async (event: any) => {
     if (event.data) {
       // If event.data is available, navigate back to "Discounts" component
+      await addDiscountUser(await getId(), event.data); // Add "await" here
       navigation.navigate('Discounts');
     }
   };

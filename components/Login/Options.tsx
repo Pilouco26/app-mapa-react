@@ -21,8 +21,6 @@ async function onGoogleButtonPress() {
 
     // Sign-in the user with the credential
     await auth().signInWithCredential(googleCredential);
-
-    console.log('Signed in with Google!');
   } catch (error) {
     // Handle errors here
     console.error('Google Sign-In Error:', error);

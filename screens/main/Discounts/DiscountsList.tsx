@@ -1,18 +1,37 @@
-import React from 'react';
-import {Button, Icon, IconElement, List, ListItem} from '@ui-kitten/components';
+import React, {useEffect, useState} from 'react';
+import {List, ListItem} from '@ui-kitten/components';
 import {StyleSheet, Text, View} from 'react-native';
+import {getAllDiscountsByIdUser} from '../../../database/UsuarisDescomptes/UsuarisDescomptes';
+import {FIREBASE_AUTH} from '../../../config/Firebase';
+import {getIdByEmail} from '../../../database/Usuaris/Usuaris';
 
-interface IListItem {
-  title: string;
-  description: string;
-}
+export const DiscountsList = () => {
+  const [data, setData] = useState<string[]>([]);
 
-const data = new Array(8).fill({
-  title: 'Descompte titol',
-  description: 'Descompte descricpió',
-});
+  useEffect(() => {
+    async function fetchDiscounts() {
+      try {
+        const email = FIREBASE_AUTH.currentUser?.email;
+        if (email) {
+          const id = await getIdByEmail(email);
+          const discounts = await getAllDiscountsByIdUser(id);
 
-export const DiscountsList = (): React.ReactElement => {
+          if (discounts) {
+            const dataArray = Object.values(discounts);
+
+            setData(dataArray);
+          } else {
+            // Handle the case where no discounts were found
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching discounts:', error);
+      }
+    }
+
+    fetchDiscounts();
+  }, []);
+
   const renderItemAccessory = (): React.ReactElement => (
     <View
       style={{
@@ -24,25 +43,24 @@ export const DiscountsList = (): React.ReactElement => {
         justifyContent: 'center',
         borderRadius: 10, // Adjust the value to control the roundness
       }}>
-      <Text style={{fontSize: 16, color: 'white'}}>70%</Text>
+      <Text style={{fontSize: 16, color: 'white'}}>??%</Text>
     </View>
   );
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: IListItem;
-    index: number;
-  }): React.ReactElement => (
-    <ListItem
-      title={`${item.title} ${index + 1}`}
-      description={`${item.description} ${index + 1}`}
-      accessoryRight={renderItemAccessory}
-    />
+  return (
+    <View style={styles.container}>
+      <List
+        data={data}
+        renderItem={({item}) => (
+          <ListItem
+            title={item}
+            description="Descompte descripció"
+            accessoryRight={renderItemAccessory}
+          />
+        )}
+      />
+    </View>
   );
-
-  return <List style={styles.container} data={data} renderItem={renderItem} />;
 };
 
 const styles = StyleSheet.create({

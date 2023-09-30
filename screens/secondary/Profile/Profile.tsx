@@ -5,11 +5,9 @@ import {
   ScrollView,
   Image,
   StyleSheet,
-  TouchableOpacity,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {FIREBASE_AUTH, FIREBASE_DB} from '../../../config/Firebase';
-import {getNameByEmail} from '../../../database/Usuaris/Usuaris';
+import React from 'react';
+
 import {user} from '../../main/Map/Map';
 
 export const Profile = () => {
@@ -21,9 +19,10 @@ export const Profile = () => {
             <Image
               source={require('../../.../../../assets/profile-pic.jpg')}
               style={styles.image}
-              resizeMode="center"></Image>
+              resizeMode="center"
+            />
           </View>
-          <View style={styles.active}></View>
+          <View style={styles.active} />
         </View>
 
         <View style={styles.infoContainer}>
@@ -60,19 +59,22 @@ export const Profile = () => {
               <Image
                 source={require('../../../assets/media1.jpg')}
                 style={styles.image}
-                resizeMode="cover"></Image>
+                resizeMode="cover"
+              />
             </View>
             <View style={styles.mediaImageContainer}>
               <Image
                 source={require('../../../assets/media2.jpg')}
                 style={styles.image}
-                resizeMode="cover"></Image>
+                resizeMode="cover"
+              />
             </View>
             <View style={styles.mediaImageContainer}>
               <Image
                 source={require('../../../assets/media3.jpg')}
                 style={styles.image}
-                resizeMode="cover"></Image>
+                resizeMode="cover"
+              />
             </View>
           </ScrollView>
           <View style={styles.mediaCount}>

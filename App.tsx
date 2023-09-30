@@ -13,14 +13,11 @@ import Discounts from './screens/main/Discounts/Discounts';
 import SignUp from './components/Login/SignUp';
 import Profile from './screens/secondary/Profile/Profile';
 import * as eva from '@eva-design/eva';
-import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
+import {ApplicationProvider} from '@ui-kitten/components';
 import QrCode from './screens/main/Discounts/QrCode';
 import Scanner from './screens/main/Discounts/Scanner';
-import { Camera } from 'react-native-vision-camera';
-import { PermissionsAndroid } from 'react-native';
 
 const Stack = createNativeStackNavigator();
-
 
 function InsideLayout() {
   return (
@@ -59,7 +56,6 @@ function Authentication() {
 }
 
 function App() {
-
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {

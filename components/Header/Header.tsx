@@ -8,9 +8,9 @@ function Header() {
   const navigateToLogin = (): void => {
     if (navigation.isReady()) {
       // Perform navigation if the react navigation is ready to handle actions
-      navigation.navigate("Login");
+      navigation.navigate('Login');
     } else {
-      console.log("else");
+      console.log('else');
     }
   };
 

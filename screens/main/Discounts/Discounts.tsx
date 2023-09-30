@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, Button, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {DiscountsList} from './DiscountsList';
 import Footer from '../../../components/Footer/Footer';
@@ -10,11 +10,11 @@ interface RouterProps {
 const Discounts = ({navigation}: RouterProps) => {
   return (
     <View style={styles.container}>
-      <DiscountsList></DiscountsList>
+      <DiscountsList />
       <TouchableOpacity onPress={() => navigation.navigate('Scanner')}>
         <Text>Scanner</Text>
       </TouchableOpacity>
-      <Footer navigation={navigation}></Footer>
+      <Footer navigation={navigation} />
     </View>
   );
 };
