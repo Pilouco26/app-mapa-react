@@ -5,6 +5,8 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import {getIdByEmail} from '../../../database/Usuaris/Usuaris';
 import {FIREBASE_AUTH} from '../../../config/Firebase';
 import {addDiscountUser} from '../../../database/UsuarisDescomptes/UsuarisDescomptes';
+// @ts-ignore
+import CryptoJS from 'react-native-crypto-js';
 
 async function getId() {
     try {
@@ -25,6 +27,12 @@ interface RouterProps {
     navigation: NavigationProp<any, any>;
 }
 
+function decryptText(ciphertext: string) {
+    const bytes = CryptoJS.AES.decrypt(ciphertext, 'america');
+    const plaintext = bytes.toString(CryptoJS.enc.Utf8);
+    return plaintext;
+}
+
 const Scanner = ({navigation}: RouterProps) => {
     const handleQRCodeRead = async (event: any) => {
         try {
@@ -32,6 +40,9 @@ const Scanner = ({navigation}: RouterProps) => {
                 // If event.data is available, navigate back to "Discounts" component
                 await addDiscountUser(await getId(), event.data); // Add "await" here
                 console.log('QR Code Data:', event.data);
+                const discount = decryptText(event.data);
+                console.log(discount)
+
                 navigation.navigate('Discounts');
             }
         } catch (error) {

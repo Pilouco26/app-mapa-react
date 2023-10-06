@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
-import {sha256} from 'js-sha256';
+// @ts-ignore
+import CryptoJS from 'react-native-crypto-js';
+
 
 function encryptTextToQRCode(text: string): string {
-    // Hash the text using SHA-256
-    const hashedText = sha256(text);
-
-    return hashedText;
+    const encryptedText = CryptoJS.AES.encrypt(text, 'america').toString();
+    return encryptedText;
 }
+
 
 const QrCode = ({route}: any) => {
     const text = route.params ? route.params.item : null;
@@ -27,7 +28,7 @@ const QrCode = ({route}: any) => {
             {qrCodeValue && (
                 <QRCode
                     value={qrCodeValue}
-                    size={Dimensions.get('window').width} // Set the size to the width of the screen
+                    size={300} // Set the size to the width of the screen
                 />
             )}
         </View>
