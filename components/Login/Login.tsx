@@ -14,6 +14,8 @@ import Modal from '../modal/ModalText';
 import {NavigationProp} from '@react-navigation/native';
 import {Styles} from './Styles';
 
+
+
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
@@ -52,6 +54,7 @@ const Login = ({navigation}: RouterProps) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
+      setError("L'usuari o la contrasenya no es correcta!"); // Set the error message
       console.log(error);
     } finally {
       setLoading(false);
