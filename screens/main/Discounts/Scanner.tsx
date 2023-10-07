@@ -8,6 +8,14 @@ import {addDiscountUser} from '../../../database/UsuarisDescomptes/UsuarisDescom
 // @ts-ignore
 import CryptoJS from 'react-native-crypto-js';
 
+function getDateAsString(): string {
+    const today = new Date();
+    const year = today.getFullYear().toString();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-indexed
+    const day = today.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 async function getId() {
     try {
         const email = FIREBASE_AUTH.currentUser?.email;
@@ -28,7 +36,7 @@ interface RouterProps {
 }
 
 function decryptText(ciphertext: string) {
-    const bytes = CryptoJS.AES.decrypt(ciphertext, 'america');
+    const bytes = CryptoJS.AES.decrypt(ciphertext, getDateAsString());
     const plaintext = bytes.toString(CryptoJS.enc.Utf8);
     return plaintext;
 }

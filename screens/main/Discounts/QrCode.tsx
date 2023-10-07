@@ -4,9 +4,16 @@ import QRCode from 'react-native-qrcode-svg';
 // @ts-ignore
 import CryptoJS from 'react-native-crypto-js';
 
+function getDateAsString(): string {
+    const today = new Date();
+    const year = today.getFullYear().toString();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-indexed
+    const day = today.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
 
 function encryptTextToQRCode(text: string): string {
-    const encryptedText = CryptoJS.AES.encrypt(text, 'america').toString();
+    const encryptedText = CryptoJS.AES.encrypt(text, getDateAsString()).toString();
     return encryptedText;
 }
 
