@@ -1,2 +1,2 @@
 # app-mapa-react
-L'aplicació que desenvoluparem.
+React native app. Not finished yet.
